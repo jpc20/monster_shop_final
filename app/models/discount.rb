@@ -5,7 +5,7 @@ class Discount < ApplicationRecord
   validates_numericality_of :item_quantity, greater_than: 0
 
 
-  def self.any_eligible?(item_quantity)
-    where("item_quantity <= ?", item_quantity).exists?
+  def self.find_eligible(item_quantity)
+    where("discounts.item_quantity <= ?", item_quantity).order(percent: :desc).first
   end
 end
