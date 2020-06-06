@@ -16,7 +16,6 @@ RSpec.describe "From the discount show page" do
 
       expect(current_path).to eq(merchant_discounts_path)
       expect(page).to have_content("Discount deleted")
-      save_and_open_page
       expect(page).to_not have_css("#discounts-#{discount1.id}")
     end
 end
