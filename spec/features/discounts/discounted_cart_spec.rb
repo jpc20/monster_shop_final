@@ -20,11 +20,11 @@ RSpec.describe "Cart discounts" do
       click_button 'Add to Cart'
       visit '/cart'
       within "#item-#{@ogre.id}" do
-        expect(page).to have_content("Price: $20.00")
+        expect(page).to have_content("Subtotal: $20.00")
         10.times do
           click_button "More of This!"
         end
-        expect(page).to have_content("Price: $209.00")
+        expect(page).to have_content("Discounted Subtotal: $209.00")
       end
     end
 
