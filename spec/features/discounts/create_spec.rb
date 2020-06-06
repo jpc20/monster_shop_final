@@ -32,4 +32,19 @@ RSpec.describe "Discount creation" do
       expect(page).to have_content("20 or more items")
     end
   end
+
+  it "merchants must fill out all fields when creating a discount" do
+    merchant = create(:merchant)
+    user = create(:user, role: 1, merchant_id: merchant.id)
+    visit login_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log In'
+    visit new_merchant_discount_path
+    fill_in 'Percent', with: ""
+    fill_in 'Item Quantity', with: -2
+    click_on "Create Discount"
+    expect(page).to have_content("Percent can't be blank, Percent is not a number, and Item quantity must be greater than 0")
+    expect(page).to have_button("Create Discount")
+  end
 end
