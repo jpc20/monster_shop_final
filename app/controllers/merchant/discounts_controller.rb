@@ -12,7 +12,6 @@ class Merchant::DiscountsController < Merchant::BaseController
   end
 
   def create
-    discount_params[:merchant_id] = current_user.id
     @discount = Discount.new(discount_params)
     if @discount.save
       flash[:success] = "New Discount Created"
