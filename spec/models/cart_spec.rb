@@ -53,6 +53,14 @@ RSpec.describe Cart do
       expect(@cart.subtotal_of(@giant.id)).to eq(100)
     end
 
+    it '.discounted_subtotal_of()' do
+      discount = @megan.discounts.create(percent: 5, item_quantity: 10)
+      10.times do
+        @cart.add_item(@ogre.id.to_s)
+      end
+      expect(@cart.discounted_subtotal_of(@ogre.id, discount.percent)).to eq(209)
+    end
+
     it '.limit_reached?()' do
       expect(@cart.limit_reached?(@ogre.id)).to eq(false)
       expect(@cart.limit_reached?(@giant.id)).to eq(true)
