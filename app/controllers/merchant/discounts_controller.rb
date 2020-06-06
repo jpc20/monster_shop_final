@@ -10,4 +10,10 @@ class Merchant::DiscountsController < Merchant::BaseController
   def edit
 
   end
+
+  def destroy
+    Discount.destroy(params[:id])
+    flash[:notice] = "Discount deleted"
+    redirect_to merchant_discounts_path
+  end
 end
