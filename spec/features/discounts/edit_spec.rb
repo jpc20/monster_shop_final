@@ -12,11 +12,11 @@ RSpec.describe "Discount edit" do
       visit edit_merchant_discount_path(discount.id)
       fill_in 'Percent', with: 10
       fill_in 'Item Quantity', with: 20
-      click_on "Create Discount"
+      click_on "Update Discount"
       expect(current_path).to eq(merchant_discounts_path)
       expect(page).to have_content("Discount Edited")
       within "#discounts-#{discount.id}" do
-        expect(page).to have_content("5%")
+        expect(page).to have_content("10%")
         expect(page).to have_content("20 or more items")
       end
   end
