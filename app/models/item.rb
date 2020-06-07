@@ -29,4 +29,9 @@ class Item < ApplicationRecord
   def average_rating
     reviews.average(:rating)
   end
+
+  def find_price(cart)
+    return (cart.discounted_subtotal_of(id) / cart.count_of(id)) if cart.find_discount(id)
+    price
+  end
 end
