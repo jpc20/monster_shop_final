@@ -31,5 +31,19 @@ RSpec.describe "Cart discounts" do
       expect(page).to have_content("Total: $259.00")
     end
 
+    it "order_item price is effected by discount" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      visit item_path(@ogre)
+      click_button 'Add to Cart'
+      visit '/cart'
+      within "#item-#{@ogre.id}" do
+        10.times do
+          click_button "More of This!"
+        end
+      end
+      click_button 'Check Out'
+      order_item = OrderItem.last
+      expect(order_item.price).to eq(19)
+    end
   end
 end
