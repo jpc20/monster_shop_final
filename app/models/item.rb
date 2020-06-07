@@ -31,7 +31,7 @@ class Item < ApplicationRecord
   end
 
   def find_price(cart)
-    return (cart.discounted_subtotal_of(id) / cart.count_of(id)) if cart.find_discount(id)
+    return cart.find_discounted_price(id) if cart.find_discount(id)
     price
   end
 end

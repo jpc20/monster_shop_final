@@ -62,4 +62,8 @@ class Cart
     discounts = item.merchant.discounts.where("item_quantity <= ?", count_of(item_id))
     return discounts.order(percent: :desc).first.percent if !discounts.empty?
   end
+
+  def find_discounted_price(item_id)
+    discounted_subtotal_of(item_id) / count_of(item_id)
+  end
 end
