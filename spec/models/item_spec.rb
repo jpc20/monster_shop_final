@@ -37,6 +37,17 @@ RSpec.describe Item do
     it '.average_rating' do
       expect(@ogre.average_rating.round(2)).to eq(3.00)
     end
+
+    it ".find_price" do
+      cart = Cart.new({
+        @ogre.id.to_s => 1,
+        @giant.id.to_s => 2
+        })
+      @megan.discounts.create(percent: 5, item_quantity: 10)
+      expect(@ogre.find_price(cart)).to eq(20)
+      cart.contents[@ogre.id.to_s] = 10
+      expect(@ogre.find_price(cart)).to eq(19)
+    end
   end
 
   describe 'Class Methods' do
