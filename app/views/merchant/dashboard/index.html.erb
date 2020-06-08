@@ -15,3 +15,13 @@
     </section>
   <% end %>
 </section>
+
+<section class="to-do-list">
+  <h2>To-Do-List:</h2>
+  <section class="items-missing-images">
+    <h3>Items missing images:</h3>
+    <% @merchant.items_missing_images do |item| %>
+      <p><%= link_to "#{item.name}", edit_merchant_item_path(item.id) %></p>
+    <% end %>
+  </section>
+</section>

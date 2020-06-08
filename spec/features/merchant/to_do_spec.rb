@@ -20,9 +20,8 @@ RSpec.describe 'Merchant Dashboard' do
 
     it "I can see a to do list of items without images" do
       visit "/merchant"
-
-      within "#to-do-list" do
-        within "#items-missing-images" do
+      within ".to-do-list" do
+        within ".items-missing-images" do
           expect(page).to have_content(@giant.name)
           click_link(@ogre.name)
         end
