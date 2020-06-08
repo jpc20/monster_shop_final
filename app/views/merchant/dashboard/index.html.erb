@@ -20,8 +20,8 @@
   <h2>To-Do-List:</h2>
   <section class="items-missing-images">
     <h3>Items missing images:</h3>
-    <% @merchant.items_missing_images do |item| %>
-      <p><%= link_to "#{item.name}", edit_merchant_item_path(item.id) %></p>
+    <% @merchant.items_missing_images.each do |item| %>
+      <div><%= link_to "#{item.name}", edit_merchant_item_path(item.id) %></div>
     <% end %>
   </section>
 </section>

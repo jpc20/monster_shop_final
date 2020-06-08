@@ -23,10 +23,10 @@ RSpec.describe 'Merchant Dashboard' do
       within ".to-do-list" do
         within ".items-missing-images" do
           expect(page).to have_content(@giant.name)
-          click_link(@ogre.name)
+          click_link(@hippo.name)
         end
       end
-      expect(current_path).to eq(edit_merchant_item_path(@ogre.id))
+      expect(current_path).to eq(edit_merchant_item_path(@hippo.id))
     end
 
 
