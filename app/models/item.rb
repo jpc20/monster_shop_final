@@ -6,7 +6,6 @@ class Item < ApplicationRecord
 
   validates_presence_of :name,
                         :description,
-                        :image,
                         :price,
                         :inventory
 
@@ -20,6 +19,15 @@ class Item < ApplicationRecord
     .group(:id)
     .order("total_sold #{order}")
     .limit(limit)
+  end
+
+  def self.unfulfilled_count
+    joins(:order_items).where("order_items.fulfilled = false").count
+  end
+
+  def self.unfulfilled_total_price
+    joins(:order_items).where("order_items.fulfilled = false")
+                      .sum("order_items.price * order_items.quantity")
   end
 
   def sorted_reviews(limit = nil, order = :asc)

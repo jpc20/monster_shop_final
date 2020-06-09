@@ -15,3 +15,16 @@
     </section>
   <% end %>
 </section>
+
+<section class="to-do-list">
+  <h2>To-Do-List:</h2>
+  <section class="items-missing-images">
+    <h3>Items missing images:</h3>
+    <% @merchant.items_missing_images.each do |item| %>
+      <div><%= link_to "#{item.name}", edit_merchant_item_path(item.id) %></div>
+    <% end %>
+  </section>
+  <section class="unfulfilled-items">
+    <h3>You have <%= @merchant.items.unfulfilled_count %> unfulfilled orders worth <%= number_to_currency(@merchant.items.unfulfilled_total_price) %></h3>
+  </section>
+</section>
