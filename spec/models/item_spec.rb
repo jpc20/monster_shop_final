@@ -68,8 +68,8 @@ RSpec.describe Item do
       @order_2 = @user.orders.create!
       @order_3 = @user.orders.create!
       @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
-      @order_1.order_items.create!(item: @hippo, price: @hippo.price, quantity: 3)
-      @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 5)
+      @order_1.order_items.create!(item: @hippo, price: @hippo.price, quantity: 3, fulfilled: true)
+      @order_2.order_items.create!(item: @hippo, price: @hippo.price, quantity: 5, fulfilled: true)
       @order_3.order_items.create!(item: @nessie, price: @nessie.price, quantity: 7)
       @order_3.order_items.create!(item: @gator, price: @gator.price, quantity: 1)
     end
@@ -82,6 +82,10 @@ RSpec.describe Item do
       expect(Item.by_popularity).to eq([@hippo, @nessie, @ogre, @gator, @giant])
       expect(Item.by_popularity(3, "ASC")).to eq([@giant, @gator, @ogre])
       expect(Item.by_popularity(3, "DESC")).to eq([@hippo, @nessie, @ogre])
+    end
+
+    it '.unfulfilled_count' do
+      expect(Item.unfulfilled_count).to eq(3)
     end
   end
 end

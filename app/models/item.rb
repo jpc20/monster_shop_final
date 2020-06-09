@@ -21,6 +21,10 @@ class Item < ApplicationRecord
     .limit(limit)
   end
 
+  def self.unfulfilled_count
+    joins(:order_items).where("order_items.fulfilled = false").count
+  end
+
   def sorted_reviews(limit = nil, order = :asc)
     reviews.order(rating: order).limit(limit)
   end
