@@ -29,6 +29,15 @@ RSpec.describe 'Merchant Dashboard' do
       expect(current_path).to eq(edit_merchant_item_path(@hippo.id))
     end
 
+    it "I can see a count of unfulfilled items and their total cost" do
+      visit "/merchant"
+      within ".to-do-list" do
+        within ".unfulfilled-items" do
+          expect(page).to have_content("You have 5 unfulfilled orders worth $140.50")
+        end
+      end
+    end
+
 
   end
 end
