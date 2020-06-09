@@ -87,5 +87,9 @@ RSpec.describe Item do
     it '.unfulfilled_count' do
       expect(Item.unfulfilled_count).to eq(3)
     end
+
+    it ".unfulfilled_total_price" do
+      expect(Item.unfulfilled_total_price).to eq(440)
+    end
   end
 end
