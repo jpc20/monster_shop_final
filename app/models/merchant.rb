@@ -35,6 +35,6 @@ class Merchant < ApplicationRecord
   end
 
   def items_missing_images
-    items.where(image: nil)
+    items.where(image: [nil, ''])
   end
 end
