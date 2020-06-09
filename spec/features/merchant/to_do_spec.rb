@@ -33,7 +33,7 @@ RSpec.describe 'Merchant Dashboard' do
       visit "/merchant"
       within ".to-do-list" do
         within ".unfulfilled-items" do
-          expect(page).to have_content("You have 5 unfulfilled orders worth $140.50")
+          expect(page).to have_content("You have 3 unfulfilled orders worth $240.50")
         end
       end
     end

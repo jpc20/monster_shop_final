@@ -24,4 +24,7 @@
       <div><%= link_to "#{item.name}", edit_merchant_item_path(item.id) %></div>
     <% end %>
   </section>
+  <section class="unfulfilled-items">
+    <h3>You have <%= @merchant.items.unfulfilled_count %> unfulfilled orders worth <%= number_to_currency(@merchant.items.unfulfilled_total_price) %></h3>
+  </section>
 </section>
