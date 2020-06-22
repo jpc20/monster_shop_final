@@ -28,7 +28,7 @@ RSpec.describe "Discount edit" do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       click_button 'Log In'
-      visit edit_merchant_discount_path(discount.id)
+      visit "/merchant/discounts/#{discount.id}/edit"
       fill_in 'Percent', with: -1
       click_on "Update Discount"
       expect(page).to have_content("Percent must be greater than 0")
