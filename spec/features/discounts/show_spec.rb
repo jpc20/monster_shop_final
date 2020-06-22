@@ -30,7 +30,7 @@ RSpec.describe "Discount show" do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       click_button 'Log In'
-      visit merchant_discount_path(discount1.id)
+      visit "/merchant/discounts/#{discount1.id}"
       click_link "Edit Discount"
     end
 
